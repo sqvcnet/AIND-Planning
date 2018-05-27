@@ -199,7 +199,7 @@ class AirCargoProblem(Problem):
         """
         count = 0
         for clause in self.goal:
-            states = []
+            states = list()
             states.append((node.state, 0))
             explored = set()
             while len(states) > 0:
@@ -208,7 +208,7 @@ class AirCargoProblem(Problem):
                 kb = PropKB()
                 kb.tell(decode_state(state, self.state_map).pos_sentence())
                 if clause in kb.clauses:
-                    if (level > count):
+                    if level > count:
                         count = level
                     break
                 explored.add(state)
@@ -216,7 +216,7 @@ class AirCargoProblem(Problem):
                 possible_actions = self.actions(state)
                 for action in possible_actions:
                     state = self.result(state, action)
-                    if (state not in explored):
+                    if state not in explored:
                         states.append((state, level + 1))
 
         return count
