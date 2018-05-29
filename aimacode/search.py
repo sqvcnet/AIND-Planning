@@ -214,11 +214,13 @@ def best_first_graph_search(problem, f):
     explored = set()
     while frontier:
         node = frontier.pop()
-        if problem.goal_test(node.state):
-            return node
+        # if problem.goal_test(node.state):
+        #     return node
         explored.add(node.state)
         for child in node.expand(problem):
             if child.state not in explored and child not in frontier:
+                if problem.goal_test(child.state):
+                    return child
                 frontier.append(child)
             elif child in frontier:
                 incumbent = frontier[child]

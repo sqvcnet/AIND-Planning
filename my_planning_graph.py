@@ -538,7 +538,6 @@ class PlanningGraph():
                 for goal in goals:
                     if goal in symbols:
                         level_sum += level
-                        # print("total cost: {}".format(level_sum))
                         goals.remove(goal)
 
 
